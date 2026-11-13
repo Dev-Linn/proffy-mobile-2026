@@ -1,0 +1,8 @@
+# Proffy Mobile 2026
+
+- **Nome completo:** Lincoln Costa Silva
+- **Turma:** Sistemas de Informação
+
+## T3 - Desafio: Fluxo de Recuperação de Senha
+
+Implementei a tela `ForgotPasswordActivity` (layout `activity_forgot_password.xml`) com o mesmo padrão das telas de cadastro: View Binding, `addTextChangedListener` no campo de e-mail e a função `setButtonState`, que troca cor, texto e estado do botão. A validação do e-mail ficou no utilitário `utils/ValidationUtils.kt` (`isValidEmail`, com `Patterns.EMAIL_ADDRESS`), que também passou a ser usado no `RegisterStepTwoActivity`, para não haver duas regras diferentes. Enquanto o usuário digita, um e-mail vazio mantém o botão cinza e desabilitado com o texto "Entrar"; um e-mail inválido mostra a mensagem de erro abaixo do campo (`TextInputLayout.error`); um e-mail válido remove o erro e deixa o botão verde e habilitado com o texto "Enviar". Ao tocar em "Enviar", a tela abre o `FinallyActivity` por `Intent`, passando pelos extras `textViewTitleFinally`, `textViewSubtitleFinally` e `titleButton` o título "Redefinição enviada!", o texto de confirmação e o botão "Voltar ao login", da mesma forma que o `RegisterStepTwoActivity` reaproveita essa tela. No `FinallyActivity`, o botão "Voltar ao login" abre o `LoginActivity` com `FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK`, limpando a pilha de navegação. A tela de login ganhou o clique em "Esqueci minha senha", a nova Activity foi registrada no `AndroidManifest.xml` com `windowSoftInputMode="adjustResize"` e o conteúdo fica dentro de um `ScrollView`, para o teclado não cobrir o botão. Todos os textos estão em `strings.xml`.
